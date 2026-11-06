@@ -1,0 +1,127 @@
+patch:
+  file: Assets/Scenes/MainScene.unity
+  mode: minimal-scene-theme-integration
+  preserve:
+    - existing GUID references
+    - existing GameObject hierarchy
+    - existing script references
+    - existing prefab references
+    - existing spawn/save/score logic
+  instructions:
+    - "1. Replace the top RenderSettings block in Assets/Scenes/MainScene.unity with the Devl's Chase values below."
+    - "2. Replace the Directional Light component color/intensity/rotation values to create the cursed red rim light."
+    - "3. Replace the Main Camera clear flags, background color, FOV, and render settings for the cinematic camera look."
+    - "4. Replace the visible text components in the Canvas to use the Devil's Chase labels while preserving the existing text components and references."
+    - "5. Do not edit scripts, prefabs, or hierarchy; only apply these YAML values to the existing scene object blocks."
+  replacements:
+    - target: "RenderSettings"
+      location: "top of Assets/Scenes/MainScene.unity"
+      old: |
+        RenderSettings:
+          m_ObjectHideFlags: 0
+          serializedVersion: 10
+          m_Fog: 0
+          m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+          m_FogMode: 3
+          m_FogDensity: 0.01
+          m_LinearFogStart: 0
+          m_LinearFogEnd: 300
+          m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+          m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+          m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+          m_AmbientIntensity: 1
+          m_AmbientMode: 0
+          m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+          m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+      new: |
+        RenderSettings:
+          m_ObjectHideFlags: 0
+          serializedVersion: 10
+          m_Fog: 1
+          m_FogColor: {r: 0.10, g: 0.01, b: 0.03, a: 1}
+          m_FogMode: 3
+          m_FogDensity: 0.035
+          m_LinearFogStart: 0
+          m_LinearFogEnd: 120
+          m_AmbientSkyColor: {r: 0.22, g: 0.03, b: 0.06, a: 1}
+          m_AmbientEquatorColor: {r: 0.16, g: 0.02, b: 0.04, a: 1}
+          m_AmbientGroundColor: {r: 0.08, g: 0.01, b: 0.02, a: 1}
+          m_AmbientIntensity: 1.15
+          m_AmbientMode: 1
+          m_SubtractiveShadowColor: {r: 0.13, g: 0.02, b: 0.04, a: 1}
+          m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+    - target: "LightmapSettings"
+      location: "replace LightmapSettings block directly under the existing RenderSettings block"
+      old: |
+        LightmapSettings:
+          m_ObjectHideFlags: 0
+          serializedVersion: 13
+          m_BakeOnSceneLoad: 0
+          m_GISettings:
+      new: |
+        LightmapSettings:
+          m_ObjectHideFlags: 0
+          serializedVersion: 13
+          m_BakeOnSceneLoad: 0
+          m_GISettings:
+            serializedVersion: 2
+            m_BounceScale: 1
+            m_IndirectOutputScale: 1
+            m_AlbedoBoost: 1
+            m_EnvironmentLightingMode: 1
+            m_EnableBakedLightmaps: 1
+            m_EnableRealtimeLightmaps: 0
+          m_LightingSettings: {fileID: 4890085278179872738, guid: 6a7b82f7c1104e54ae1a3813b0d3f2e1, type: 2}
+    - target: "Directional Light"
+      location: "GameObject block named Directional Light"
+      old: |
+        m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+        m_Intensity: 1
+      new: |
+        m_Color: {r: 0.98, g: 0.22, b: 0.18, a: 1}
+        m_Intensity: 1.35
+    - target: "Directional Light transform"
+      location: "Transform block under Directional Light"
+      old: |
+        m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+      new: |
+        m_LocalRotation: {x: 0.38268346, y: -0.17364818, z: 0.08715574, w: 0.903678}
+    - target: "Main Camera"
+      location: "GameObject block named Main Camera"
+      old: |
+        m_ClearFlags: 1
+        m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+        field of view: 60
+        m_HDR: 1
+      new: |
+        m_ClearFlags: 2
+        m_BackGroundColor: {r: 0.05, g: 0.005, b: 0.015, a: 1}
+        field of view: 68
+        m_HDR: 0
+    - target: "Canvas text labels"
+      location: "existing Canvas text components (CoinText, TimerText, BestScoreText, BestTimeText)"
+      old: |
+        m_text: 'Coin : 0'
+      new: |
+        m_text: 'Souls Saved: 0'
+    - target: "Canvas text labels"
+      location: "existing Canvas text components (CoinText, TimerText, BestScoreText, BestTimeText)"
+      old: |
+        m_text: 'Timer: 0 s'
+      new: |
+        m_text: 'Nightmare Time: 0 s'
+    - target: "Canvas text labels"
+      location: "existing Canvas text components (CoinText, TimerText, BestScoreText, BestTimeText)"
+      old: |
+        m_text: 'Best Score: 0'
+      new: |
+        m_text: 'Highest Escape: 0'
+    - target: "Canvas text labels"
+      location: "existing Canvas text components (CoinText, TimerText, BestScoreText, BestTimeText)"
+      old: |
+        m_text: 'Best Time: 0 s'
+      new: |
+        m_text: 'Devil''s Chase: 0 s'
+  notes:
+    - "This patch intentionally only changes scene visual settings and text labels; it does not alter scripts, prefabs, hierarchy, or gameplay code."
+    - "If you want a fully custom skybox material later, replace the built-in skybox reference with a real 2100000 material GUID generated by Unity."
